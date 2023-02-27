@@ -1,6 +1,11 @@
-This code trains a logistic regression model to classify text data into positive or negative sentiment.
+# Sentiment Analysis of Tweets using Logistic Regression
 
-It uses the NLTK library to preprocess the data by converting it to lowercase, removing punctuation and numbers, tokenizing the text, and removing stop words.
-It then uses the sklearn library to convert the text data into numerical features using bag of words and split the data into training and testing sets. 
+The code is a Python script that performs sentiment analysis on textual data. The script uses the Pandas library to load and preprocess the training and test data, and the NLTK library to tokenize the text and remove stop words. It also uses the Scikit-learn library to convert the text data into numerical features using a bag of words model, and to train a logistic regression model to predict the sentiment of the text.
 
-The training set is used to train the logistic regression model, and the testing set is used to evaluate its performance. The model is saved to disk using the pickle library. The saved model is loaded and used to make predictions on new data, which is preprocessed in the same way as the training data. The number of positive and negative predictions are counted and outputted.
+The script begins by loading the training and test data from CSV files. It then concatenates the two datasets and preprocesses the text data by converting it to lowercase, removing punctuation, and removing numbers. It then tokenizes the text and removes stop words, and joins the tokenized text back into a single string. The script then converts the text data into numerical features using the CountVectorizer function, which creates a bag of words model with a maximum of 5000 features. The data is split into training and testing sets using the train_test_split function from Scikit-learn.
+
+The script then initializes and fits a StandardScaler object to the training data, which scales the data by subtracting the mean and dividing by the standard deviation. The training and test data are then transformed using the fitted scaler. A logistic regression model is initialized and trained on the scaled training data. The script then uses the trained model to make predictions on the test data and calculates the accuracy of the model using the accuracy_score function from Scikit-learn. It also outputs a classification report that includes precision, recall, and F1-score metrics.
+
+The script saves the trained model to disk using the pickle library, which serializes the model object and writes it to a file. The saved model can then be loaded using the pickle.load function.
+
+Finally, the script loads new data from two CSV files and preprocesses it in the same way as the training data. It then uses the trained model to make predictions on the new data, and outputs the number of positive and negative predictions.
